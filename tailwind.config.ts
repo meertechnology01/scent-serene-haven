@@ -176,5 +176,13 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require("tailwindcss-animate")
+	],
+	safelist: [
+		{
+			pattern: /bg-(gold|brown|primary|secondary|accent)-(light|DEFAULT|dark)/,
+			variants: ['before', 'after', 'hover'],
+		},
+	],
 } satisfies Config;
