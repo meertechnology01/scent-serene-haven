@@ -1,7 +1,7 @@
 
 import React from 'react';
 import IncenseAnimation from './IncenseAnimation';
-import { sparkles, wind } from 'lucide-react';
+import { Sparkles, Wind } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface ProductFeatureProps {
@@ -36,7 +36,7 @@ const ProductFeature = ({ className }: ProductFeatureProps) => {
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-full bg-gold-light flex items-center justify-center flex-shrink-0">
-                    <sparkles className="text-brown-DEFAULT" size={20} />
+                    <Sparkles className="text-brown-DEFAULT" size={20} />
                   </div>
                   <div>
                     <h4 className="font-serif text-lg text-brown-DEFAULT mb-2">Natural Aromatherapy</h4>
@@ -46,7 +46,7 @@ const ProductFeature = ({ className }: ProductFeatureProps) => {
                 
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-full bg-gold-light flex items-center justify-center flex-shrink-0">
-                    <wind className="text-brown-DEFAULT" size={20} />
+                    <Wind className="text-brown-DEFAULT" size={20} />
                   </div>
                   <div>
                     <h4 className="font-serif text-lg text-brown-DEFAULT mb-2">Long-lasting Fragrance</h4>

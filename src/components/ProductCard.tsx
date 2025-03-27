@@ -34,10 +34,10 @@ const ProductCard = ({
         />
       </div>
       <div className="p-6">
-        <h3 className="font-serif text-xl font-medium text-brown-DEFAULT mb-2">{title}</h3>
+        <h3 className="font-serif text-xl font-medium text-primary mb-2">{title}</h3>
         <p className="text-sm text-muted-foreground mb-4">{description}</p>
         <div className="flex items-center justify-between">
-          <span className="font-serif text-xl font-medium text-brown-DEFAULT">{price}</span>
+          <span className="font-serif text-xl font-medium text-primary">{price}</span>
           <Button variant="outline" size="sm" icon={<ArrowRight size={16} />}>
             Shop Now
           </Button>

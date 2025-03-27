@@ -11,31 +11,31 @@ const Footer = ({ className }: FooterProps) => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer id="contact" className={cn("bg-sepia-dark text-brown-light", className)}>
+    <footer id="contact" className={cn("bg-sepia-dark text-muted-foreground", className)}>
       <div className="container-custom py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div>
-            <h3 className="font-serif text-2xl font-medium text-brown-DEFAULT mb-4">
+            <h3 className="font-serif text-2xl font-medium text-primary mb-4">
               Scent<span className="text-gold-DEFAULT">Serene</span>
             </h3>
             <p className="mb-6">
               Luxury handcrafted scents from the heart of Nigeria. Elevate your space and soul with our exotic blends.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="p-2 rounded-full bg-brown-DEFAULT text-white hover:bg-brown-dark transition-colors duration-300">
+              <a href="#" className="p-2 rounded-full bg-primary text-white hover:bg-primary/90 transition-colors duration-300">
                 <Instagram size={18} />
               </a>
-              <a href="#" className="p-2 rounded-full bg-brown-DEFAULT text-white hover:bg-brown-dark transition-colors duration-300">
+              <a href="#" className="p-2 rounded-full bg-primary text-white hover:bg-primary/90 transition-colors duration-300">
                 <Facebook size={18} />
               </a>
-              <a href="#" className="p-2 rounded-full bg-brown-DEFAULT text-white hover:bg-brown-dark transition-colors duration-300">
+              <a href="#" className="p-2 rounded-full bg-primary text-white hover:bg-primary/90 transition-colors duration-300">
                 <Twitter size={18} />
               </a>
             </div>
           </div>
           
           <div>
-            <h4 className="font-serif text-lg font-medium text-brown-DEFAULT mb-4">Quick Links</h4>
+            <h4 className="font-serif text-lg font-medium text-primary mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li>
                 <a href="#" className="hover:text-gold-DEFAULT transition-colors duration-300 underline-hover">Home</a>
@@ -53,7 +53,7 @@ const Footer = ({ className }: FooterProps) => {
           </div>
           
           <div>
-            <h4 className="font-serif text-lg font-medium text-brown-DEFAULT mb-4">Contact Us</h4>
+            <h4 className="font-serif text-lg font-medium text-primary mb-4">Contact Us</h4>
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin size={18} className="mr-2 mt-1 flex-shrink-0 text-gold-DEFAULT" />
@@ -71,7 +71,7 @@ const Footer = ({ className }: FooterProps) => {
           </div>
         </div>
         
-        <div className="border-t border-brown-light/20 pt-6 flex flex-col md:flex-row items-center justify-between">
+        <div className="border-t border-muted/20 pt-6 flex flex-col md:flex-row items-center justify-between">
           <p>&copy; {currentYear} Scent Serene. All rights reserved.</p>
           <div className="flex space-x-4 mt-4 md:mt-0">
             <a href="#" className="hover:text-gold-DEFAULT transition-colors duration-300 text-sm">Privacy Policy</a>

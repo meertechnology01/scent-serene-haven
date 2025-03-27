@@ -37,7 +37,7 @@ const Navbar = () => {
     >
       <div className="container-custom flex items-center justify-between">
         <a href="#" className="flex items-center">
-          <h1 className="font-serif text-2xl font-medium tracking-tight text-brown-DEFAULT">
+          <h1 className="font-serif text-2xl font-medium tracking-tight text-primary">
             Scent<span className="text-gold-dark">Serene</span>
           </h1>
         </a>
@@ -48,14 +48,14 @@ const Navbar = () => {
             <a 
               key={link.name} 
               href={link.href} 
-              className="text-brown-DEFAULT hover:text-gold-dark transition-colors duration-300 underline-hover"
+              className="text-primary hover:text-gold-dark transition-colors duration-300 underline-hover"
             >
               {link.name}
             </a>
           ))}
           <a 
             href="#" 
-            className="inline-flex items-center justify-center p-3 rounded-full text-white bg-brown-DEFAULT hover:bg-brown-dark transition-all duration-300 hover:shadow-lg"
+            className="inline-flex items-center justify-center p-3 rounded-full text-white bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg"
           >
             <ShoppingCart size={20} />
           </a>
@@ -65,7 +65,7 @@ const Navbar = () => {
         <div className="lg:hidden">
           <button
             type="button"
-            className="p-2 rounded-md text-brown-DEFAULT hover:text-gold-dark"
+            className="p-2 rounded-md text-primary hover:text-gold-dark"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -86,7 +86,7 @@ const Navbar = () => {
               <a 
                 key={link.name} 
                 href={link.href} 
-                className="text-xl font-serif text-brown-DEFAULT hover:text-gold-dark transition-colors duration-300"
+                className="text-xl font-serif text-primary hover:text-gold-dark transition-colors duration-300"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}
@@ -94,7 +94,7 @@ const Navbar = () => {
             ))}
             <a 
               href="#" 
-              className="inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-md text-white bg-brown-DEFAULT hover:bg-brown-dark transition-all duration-300"
+              className="inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-md text-white bg-primary hover:bg-primary/90 transition-all duration-300"
               onClick={() => setIsOpen(false)}
             >
               <ShoppingCart size={20} />

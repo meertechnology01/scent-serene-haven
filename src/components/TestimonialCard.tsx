@@ -37,9 +37,9 @@ const TestimonialCard = ({
           />
         ))}
       </div>
-      <p className="text-brown-DEFAULT italic mb-6 text-lg">"{quote}"</p>
+      <p className="text-primary italic mb-6 text-lg">"{quote}"</p>
       <div className="flex flex-col">
-        <span className="font-serif text-brown-DEFAULT font-medium">{author}</span>
+        <span className="font-serif text-primary font-medium">{author}</span>
         <span className="text-sm text-muted-foreground">{location}</span>
       </div>
     </div>

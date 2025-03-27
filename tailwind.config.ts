@@ -39,11 +39,6 @@ export default {
 					DEFAULT: '#e2d1c3',
 					dark: '#c7b299',
 				},
-				brown: {
-					light: '#8b7355',
-					DEFAULT: '#654321',
-					dark: '#3d2314',
-				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
@@ -181,7 +176,7 @@ export default {
 	],
 	safelist: [
 		{
-			pattern: /bg-(gold|brown|primary|secondary|accent)-(light|DEFAULT|dark)/,
+			pattern: /bg-(gold|primary|secondary|accent)-(light|DEFAULT|dark)/,
 			variants: ['before', 'after', 'hover'],
 		},
 	],

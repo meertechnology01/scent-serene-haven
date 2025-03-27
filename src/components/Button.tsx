@@ -20,13 +20,13 @@ const Button = ({
   iconPosition = 'right',
   ...props
 }: ButtonProps) => {
-  const baseStyles = "inline-flex items-center justify-center font-medium transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brown-light";
+  const baseStyles = "inline-flex items-center justify-center font-medium transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50";
   
   const variants = {
-    primary: "bg-brown-DEFAULT text-white hover:bg-brown-dark transform hover:-translate-y-1 hover:shadow-lg",
-    secondary: "bg-gold-DEFAULT text-brown-dark hover:bg-gold-dark transform hover:-translate-y-1 hover:shadow-lg",
-    outline: "border border-brown-light text-brown-DEFAULT bg-transparent hover:bg-brown-DEFAULT hover:text-white",
-    link: "bg-transparent text-brown-DEFAULT hover:text-gold-dark underline-hover py-0 px-0"
+    primary: "bg-primary text-white hover:bg-primary/90 transform hover:-translate-y-1 hover:shadow-lg",
+    secondary: "bg-gold-DEFAULT text-primary hover:bg-gold-dark transform hover:-translate-y-1 hover:shadow-lg",
+    outline: "border border-primary/30 text-primary bg-transparent hover:bg-primary hover:text-white",
+    link: "bg-transparent text-primary hover:text-gold-dark underline-hover py-0 px-0"
   };
   
   const sizes = {
