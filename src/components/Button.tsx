@@ -24,9 +24,9 @@ const Button = ({
   
   const variants = {
     primary: "bg-primary text-white hover:bg-primary/90 transform hover:-translate-y-1 hover:shadow-lg",
-    secondary: "bg-gold-DEFAULT text-primary hover:bg-gold-dark transform hover:-translate-y-1 hover:shadow-lg",
+    secondary: "bg-accent text-primary hover:bg-accent/90 transform hover:-translate-y-1 hover:shadow-lg",
     outline: "border border-primary/30 text-primary bg-transparent hover:bg-primary hover:text-white",
-    link: "bg-transparent text-primary hover:text-gold-dark underline-hover py-0 px-0"
+    link: "bg-transparent text-primary hover:text-accent underline-hover py-0 px-0"
   };
   
   const sizes = {

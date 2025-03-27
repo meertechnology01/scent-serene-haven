@@ -32,7 +32,7 @@ const TestimonialCard = ({
             size={18} 
             className={cn(
               "mr-1",
-              i < rating ? "text-gold-DEFAULT fill-gold-DEFAULT" : "text-muted"
+              i < rating ? "text-amber-500 fill-amber-500" : "text-muted"
             )}
           />
         ))}
