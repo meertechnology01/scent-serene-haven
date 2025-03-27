@@ -1,31 +1,19 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
 import ProductCard from '../components/ProductCard';
 import TestimonialCard from '../components/TestimonialCard';
 import Newsletter from '../components/Newsletter';
+import ProductFeature from '../components/ProductFeature';
+import ImageGallery from '../components/ImageGallery';
 import { ArrowRight, ArrowDown, Check } from 'lucide-react';
+import { useRevealAnimation } from '../components/IntersectionObserver';
 
 const Index = () => {
   // Intersection Observer for animations
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    const revealElements = document.querySelectorAll('.reveal');
-    revealElements.forEach(el => observer.observe(el));
-
-    return () => {
-      revealElements.forEach(el => observer.unobserve(el));
-    };
-  }, []);
+  useRevealAnimation();
 
   // Products data
   const products = [
@@ -52,7 +40,7 @@ const Index = () => {
     },
     {
       id: 4,
-      image: "https://images.unsplash.com/photo-1616461046003-2d398fc01ae2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       title: "Mopping Mist",
       description: "Transform your space with refreshing, long-lasting aromas.",
       price: "₦4,000"
@@ -167,7 +155,7 @@ const Index = () => {
                   alt="Handcrafted scents"
                   className="rounded-lg shadow-xl"
                 />
-                <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-gold-DEFAULT rounded-full grid place-items-center hidden md:block">
+                <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-gold-DEFAULT rounded-full grid place-items-center hidden md:block floating">
                   <span className="font-serif text-brown-DEFAULT text-lg font-medium">Since 2010</span>
                 </div>
               </div>
@@ -194,6 +182,9 @@ const Index = () => {
         </div>
       </section>
       
+      {/* Image Gallery */}
+      <ImageGallery />
+      
       {/* Features Section */}
       <section className="section-padding bg-white">
         <div className="container-custom">
@@ -214,7 +205,7 @@ const Index = () => {
                 className="glass-card p-6 text-center hover:shadow-xl transition-all duration-300 reveal"
                 style={{ animationDelay: `${0.1 * index}s` }}
               >
-                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gold-light flex items-center justify-center">
+                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gold-light flex items-center justify-center shimmer">
                   <Check className="text-brown-DEFAULT" size={24} />
                 </div>
                 <h3 className="font-serif text-xl text-brown-DEFAULT mb-4">{feature.title}</h3>
@@ -224,6 +215,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+      
+      {/* Incense Animation Feature */}
+      <ProductFeature />
       
       {/* Products Section */}
       <section id="products" className="section-padding bg-sepia-light">
@@ -246,8 +240,7 @@ const Index = () => {
                 title={product.title}
                 description={product.description}
                 price={product.price}
-                className="reveal"
-                style={{ animationDelay: `${0.1 * index}s` }}
+                className={`reveal ${index % 2 === 0 ? 'animate-fade-in' : 'animate-slide-up'}`}
               />
             ))}
           </div>
@@ -309,8 +302,7 @@ const Index = () => {
                 author={testimonial.author}
                 location={testimonial.location}
                 rating={testimonial.rating}
-                className="reveal"
-                style={{ animationDelay: `${0.1 * index}s` }}
+                className={`reveal ${index % 2 === 0 ? 'animate-fade-in' : 'animate-slide-up'}`}
               />
             ))}
           </div>
