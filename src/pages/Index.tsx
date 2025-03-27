@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -255,10 +256,10 @@ const Index = () => {
       {/* Call to Action Section */}
       <section className="py-24 relative">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ 
-          backgroundImage: 'url(https://images.unsplash.com/photo-1595425725783-42ff3e760a75?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)',
-          filter: 'brightness(0.7)'
+          backgroundImage: 'url(/lovable-uploads/85bdcecf-0ae6-4e33-866b-3f860cae9f93.png)',
+          filter: 'brightness(0.9)'
         }} />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/70 to-primary/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-primary/20 backdrop-blur-sm"></div>
         
         <div className="container-custom relative z-10">
           <div className="max-w-2xl mx-auto text-center text-white">
