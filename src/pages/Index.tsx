@@ -8,8 +8,8 @@ import Newsletter from '../components/Newsletter';
 import ProductFeature from '../components/ProductFeature';
 import ImageGallery from '../components/ImageGallery';
 import Cart from '../components/Cart';
-import { CartProvider, useCart } from '../context/CartContext';
-import { ArrowRight, ArrowDown, Check, ShoppingBag } from 'lucide-react';
+import { useCart } from '../context/CartContext';
+import { ArrowRight, ArrowDown, Check } from 'lucide-react';
 import { useRevealAnimation } from '../components/IntersectionObserver';
 
 const WHATSAPP_LINK = "https://wa.me/8173110051?fbclid=PAZXh0bgNhZW0CMTEAAaYiSaLYLMTPiDot4Le764t7FFTlOMIDJFLlUhT6ModDx1hWIvwsSy7baF8_aem_KXTee3Cuynewv2_EUbOIeQ";
@@ -105,13 +105,16 @@ const IndexContent = () => {
     });
   };
 
+  const heroBackground = "https://images.unsplash.com/photo-1584589167171-541ce45f1eea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80";
+  const ctaBackground = "https://images.unsplash.com/photo-1510942369845-e84156dc5653?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80";
+
   return (
     <>
       <Navbar />
       
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ 
-          backgroundImage: 'url(/lovable-uploads/85bdcecf-0ae6-4e33-866b-3f860cae9f93.png)',
+          backgroundImage: `url(${heroBackground})`,
           filter: 'brightness(0.9)'
         }} />
         <div className="absolute inset-0 bg-gradient-to-b from-primary/40 to-primary/60"></div>
@@ -279,10 +282,10 @@ const IndexContent = () => {
       
       <section className="py-24 relative">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ 
-          backgroundImage: 'url(/lovable-uploads/85bdcecf-0ae6-4e33-866b-3f860cae9f93.png)',
-          filter: 'brightness(0.9)'
+          backgroundImage: `url(${ctaBackground})`,
+          filter: 'brightness(0.8)'
         }} />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-primary/20 backdrop-blur-sm"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/40 to-primary/30 backdrop-blur-sm"></div>
         
         <div className="container-custom relative z-10">
           <div className="max-w-2xl mx-auto text-center text-white">
@@ -350,9 +353,7 @@ const IndexContent = () => {
 
 const Index = () => {
   return (
-    <CartProvider>
-      <IndexContent />
-    </CartProvider>
+    <IndexContent />
   );
 };
 
