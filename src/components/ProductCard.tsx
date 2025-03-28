@@ -6,13 +6,9 @@ import { ArrowRight, ShoppingCart } from 'lucide-react';
 import { AspectRatio } from './ui/aspect-ratio';
 import { useCart } from '@/context/CartContext';
 import { toast } from "sonner";
+import { Product } from '@/data/products';
 
-interface ProductCardProps {
-  id: number;
-  image: string;
-  title: string;
-  description: string;
-  price: string;
+interface ProductCardProps extends Omit<Product, 'category'> {
   className?: string;
   whatsappLink?: string;
 }
