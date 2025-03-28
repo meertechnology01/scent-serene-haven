@@ -1,8 +1,8 @@
-
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 import Button from './Button';
 import { toast } from 'sonner';
+import emailjs from 'emailjs-com';
 
 interface NewsletterProps {
   className?: string;
@@ -11,16 +11,33 @@ interface NewsletterProps {
 const Newsletter = ({ className }: NewsletterProps) => {
   const [email, setEmail] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) {
-      toast.error('Please enter your email address');
+      toast.error('meertechnology01@gmail.com');
       return;
     }
-    
-    // In a real app, you would send this to your backend
-    toast.success('Thank you for subscribing!');
-    setEmail('');
+
+    try {
+      // Replace with your EmailJS Service ID, Template ID, and Public Key
+      const serviceId = 'service_dva8d4c';
+      const templateId = 'template_zvqnfdr';
+      const publicKey = '4BHQ1Uhaec2gqsH4N';
+
+      // Send email using EmailJS
+      await emailjs.send(
+        serviceId,
+        templateId,
+        { user_email: email, project_name: 'Scent Serene Haven' },
+        publicKey
+      );
+
+      toast.success('Thank you for subscribing to Scent Serene Haven!');
+      setEmail('');
+    } catch (error) {
+      console.error('Failed to send email:', error);
+      toast.error('Failed to subscribe. Please try again later.');
+    }
   };
 
   return (
