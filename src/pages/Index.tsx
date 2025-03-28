@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -8,14 +7,17 @@ import TestimonialCard from '../components/TestimonialCard';
 import Newsletter from '../components/Newsletter';
 import ProductFeature from '../components/ProductFeature';
 import ImageGallery from '../components/ImageGallery';
-import { ArrowRight, ArrowDown, Check } from 'lucide-react';
+import Cart from '../components/Cart';
+import { CartProvider, useCart } from '../context/CartContext';
+import { ArrowRight, ArrowDown, Check, ShoppingBag } from 'lucide-react';
 import { useRevealAnimation } from '../components/IntersectionObserver';
 
-const Index = () => {
-  // Intersection Observer for animations
-  useRevealAnimation();
+const WHATSAPP_LINK = "https://wa.me/8173110051?fbclid=PAZXh0bgNhZW0CMTEAAaYiSaLYLMTPiDot4Le764t7FFTlOMIDJFLlUhT6ModDx1hWIvwsSy7baF8_aem_KXTee3Cuynewv2_EUbOIeQ";
 
-  // Products data
+const IndexContent = () => {
+  useRevealAnimation();
+  const { addItem } = useCart();
+
   const products = [
     {
       id: 1,
@@ -47,7 +49,6 @@ const Index = () => {
     }
   ];
 
-  // Testimonials data
   const testimonials = [
     {
       id: 1,
@@ -72,7 +73,6 @@ const Index = () => {
     }
   ];
 
-  // Features data
   const features = [
     {
       id: 1,
@@ -96,15 +96,23 @@ const Index = () => {
     }
   ];
 
+  const handleAddToCart = (product: any) => {
+    addItem({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      image: product.image
+    });
+  };
+
   return (
     <>
       <Navbar />
       
-      {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ 
-          backgroundImage: 'url(https://images.unsplash.com/photo-1601295863388-29c130e8d5e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)',
-          filter: 'brightness(0.85)'
+          backgroundImage: 'url(/lovable-uploads/85bdcecf-0ae6-4e33-866b-3f860cae9f93.png)',
+          filter: 'brightness(0.9)'
         }} />
         <div className="absolute inset-0 bg-gradient-to-b from-primary/40 to-primary/60"></div>
         
@@ -122,6 +130,8 @@ const Index = () => {
                 size="lg" 
                 icon={<ArrowRight />}
                 className="bg-brown-light hover:bg-brown-DEFAULT"
+                as="a"
+                href="#products"
               >
                 Shop Now
               </Button>
@@ -144,7 +154,6 @@ const Index = () => {
         </a>
       </section>
       
-      {/* About Section */}
       <section id="about" className="section-padding bg-sepia-light">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -182,10 +191,8 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Image Gallery */}
       <ImageGallery />
       
-      {/* Features Section */}
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="text-center max-w-2xl mx-auto mb-16 reveal">
@@ -216,10 +223,8 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Incense Animation Feature */}
       <ProductFeature />
       
-      {/* Products Section */}
       <section id="products" className="section-padding bg-sepia-light">
         <div className="container-custom">
           <div className="text-center max-w-2xl mx-auto mb-16 reveal">
@@ -234,14 +239,33 @@ const Index = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {products.map((product, index) => (
-              <ProductCard
-                key={product.id}
-                image={product.image}
-                title={product.title}
-                description={product.description}
-                price={product.price}
-                className={`reveal ${index % 2 === 0 ? 'animate-fade-in' : 'animate-slide-up'}`}
-              />
+              <div key={product.id} className="reveal" style={{ animationDelay: `${0.1 * index}s` }}>
+                <ProductCard
+                  image={product.image}
+                  title={product.title}
+                  description={product.description}
+                  price={product.price}
+                />
+                <div className="mt-4 flex space-x-2">
+                  <Button 
+                    variant="outline" 
+                    className="flex-1"
+                    onClick={() => handleAddToCart(product)}
+                  >
+                    Add to Cart
+                  </Button>
+                  <Button 
+                    variant="primary"
+                    className="flex-1"
+                    as="a"
+                    href={WHATSAPP_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Buy Now
+                  </Button>
+                </div>
+              </div>
             ))}
           </div>
           
@@ -253,7 +277,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Call to Action Section */}
       <section className="py-24 relative">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ 
           backgroundImage: 'url(/lovable-uploads/85bdcecf-0ae6-4e33-866b-3f860cae9f93.png)',
@@ -274,6 +297,10 @@ const Index = () => {
               size="lg"
               className="bg-amber-500 text-primary hover:bg-amber-600 reveal"
               style={{ animationDelay: '0.2s' }}
+              as="a"
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Shop Now
             </Button>
@@ -281,7 +308,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Testimonials Section */}
       <section id="testimonials" className="section-padding bg-white">
         <div className="container-custom">
           <div className="text-center max-w-2xl mx-auto mb-16 reveal">
@@ -309,16 +335,24 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Newsletter Section */}
       <section className="section-padding bg-sepia-light">
         <div className="container-custom">
           <Newsletter className="reveal" />
         </div>
       </section>
       
-      {/* Footer */}
+      <Cart whatsappLink={WHATSAPP_LINK} />
+      
       <Footer />
     </>
+  );
+};
+
+const Index = () => {
+  return (
+    <CartProvider>
+      <IndexContent />
+    </CartProvider>
   );
 };
 

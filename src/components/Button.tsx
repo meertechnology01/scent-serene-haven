@@ -9,6 +9,10 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   icon?: React.ReactNode;
   iconPosition?: 'left' | 'right';
+  as?: 'button' | 'a';
+  href?: string;
+  target?: string;
+  rel?: string;
 }
 
 const Button = ({
@@ -18,6 +22,10 @@ const Button = ({
   className,
   icon,
   iconPosition = 'right',
+  as = 'button',
+  href,
+  target,
+  rel,
   ...props
 }: ButtonProps) => {
   const baseStyles = "inline-flex items-center justify-center font-medium transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50";
@@ -37,14 +45,31 @@ const Button = ({
   
   const iconSpacing = iconPosition === 'left' ? 'mr-2' : 'ml-2';
   
+  const buttonClasses = cn(
+    baseStyles,
+    variants[variant],
+    variant !== 'link' && sizes[size],
+    className
+  );
+
+  if (as === 'a') {
+    return (
+      <a 
+        href={href}
+        target={target}
+        rel={rel}
+        className={buttonClasses}
+      >
+        {icon && iconPosition === 'left' && <span className={iconSpacing}>{icon}</span>}
+        {children}
+        {icon && iconPosition === 'right' && <span className={iconSpacing}>{icon}</span>}
+      </a>
+    );
+  }
+  
   return (
     <button
-      className={cn(
-        baseStyles,
-        variants[variant],
-        variant !== 'link' && sizes[size],
-        className
-      )}
+      className={buttonClasses}
       {...props}
     >
       {icon && iconPosition === 'left' && <span className={iconSpacing}>{icon}</span>}
