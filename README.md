@@ -1,22 +1,22 @@
-# Welcome to your Meertech Ltd project
+# Welcome to your Scent Serene NG project
 
 ## Project info
 
-**URL**: https://meertech.dev/projects/a00303c0-ed5c-4f20-95e7-872d596eaf22
+**URL**: https://scent-serene-ng.dev/projects/a00303c0-ed5c-4f20-95e7-872d596eaf22
 
 ## How can I edit this code?
 
 There are several ways of editing your application.
 
-**Use Meertech Ltd**
+**Use Scent Serene NG**
 
-Simply visit the [Meertech Ltd Project](https://meertech.dev/projects/a00303c0-ed5c-4f20-95e7-872d596eaf22) and start prompting.
+Simply visit the [Scent Serene NG Project](https://scent-serene-ng.dev/projects/a00303c0-ed5c-4f20-95e7-872d596eaf22) and start prompting.
 
-Changes made via Meertech Ltd will be committed automatically to this repo.
+Changes made via Scent Serene NG will be committed automatically to this repo.
 
 **Use your preferred IDE**
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Meertech Ltd.
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Scent Serene NG.
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
@@ -62,8 +62,8 @@ This project is built with:
 
 ## How can I deploy this project?
 
-Simply open [Meertech Ltd](https://meertech.dev/projects/a00303c0-ed5c-4f20-95e7-872d596eaf22) and click on Share -> Publish.
+Simply open [Scent Serene NG](https://scent-serene-ng.dev/projects/a00303c0-ed5c-4f20-95e7-872d596eaf22) and click on Share -> Publish.
 
 ## I want to use a custom domain - is that possible?
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.meertech.dev/tips-tricks/custom-domain/)
+We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.scent-serene-ng.dev/tips-tricks/custom-domain/)
