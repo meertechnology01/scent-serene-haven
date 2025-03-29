@@ -7,10 +7,12 @@ import { AspectRatio } from './ui/aspect-ratio';
 import { useCart } from '@/context/CartContext';
 import { toast } from "sonner";
 import { Product } from '@/data/products';
+import { Link } from 'react-router-dom';
 
 interface ProductCardProps extends Omit<Product, 'category'> {
   className?: string;
   whatsappLink?: string;
+  showDetailButton?: boolean;
 }
 
 const ProductCard = ({
@@ -20,7 +22,8 @@ const ProductCard = ({
   description,
   price,
   className,
-  whatsappLink
+  whatsappLink,
+  showDetailButton = true
 }: ProductCardProps) => {
   const { addItem } = useCart();
 
@@ -66,16 +69,20 @@ const ProductCard = ({
         className
       )}
     >
-      <AspectRatio ratio={16/9}>
-        <img 
-          src={image}
-          alt={title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-        />
-      </AspectRatio>
+      <Link to={`/product/${id}`} className="block">
+        <AspectRatio ratio={16/9}>
+          <img 
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+        </AspectRatio>
+      </Link>
       <div className="p-6">
-        <h3 className="font-serif text-xl font-medium text-primary mb-2">{title}</h3>
-        <p className="text-sm text-muted-foreground mb-4">{description}</p>
+        <Link to={`/product/${id}`} className="block">
+          <h3 className="font-serif text-xl font-medium text-primary mb-2">{title}</h3>
+          <p className="text-sm text-muted-foreground mb-4">{description}</p>
+        </Link>
         <div className="flex items-center justify-between">
           <span className="font-serif text-xl font-medium text-primary">{price}</span>
           <div className="flex gap-2">
@@ -88,15 +95,18 @@ const ProductCard = ({
               <ShoppingCart size={16} />
               Add to Cart
             </Button>
-            <Button 
-              variant="default" 
-              size="sm" 
-              onClick={handleBuyNow}
-              className="flex items-center gap-1"
-            >
-              Shop Now
-              <ArrowRight size={16} />
-            </Button>
+            {showDetailButton && (
+              <Button 
+                variant="default" 
+                size="sm" 
+                asChild
+              >
+                <Link to={`/product/${id}`} className="flex items-center gap-1">
+                  View Details
+                  <ArrowRight size={16} />
+                </Link>
+              </Button>
+            )}
           </div>
         </div>
       </div>

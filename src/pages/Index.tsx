@@ -1,22 +1,23 @@
+
 import React, { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import Button from '../components/Button';
+import { Button } from '../components/ui/button';
 import ProductCard from '../components/ProductCard';
 import TestimonialCard from '../components/TestimonialCard';
 import Newsletter from '../components/Newsletter';
 import ProductFeature from '../components/ProductFeature';
 import ImageGallery from '../components/ImageGallery';
-import Cart from '../components/Cart';
 import { useCart } from '../context/CartContext';
 import { ArrowRight, ArrowDown, Check } from 'lucide-react';
 import { useRevealAnimation } from '../components/IntersectionObserver';
-
-const WHATSAPP_LINK = "https://wa.me/8173110051?fbclid=PAZXh0bgNhZW0CMTEAAaYiSaLYLMTPiDot4Le764t7FFTlOMIDJFLlUhT6ModDx1hWIvwsSy7baF8_aem_KXTee3Cuynewv2_EUbOIeQ";
+import { Link, useNavigate } from 'react-router-dom';
+import { WHATSAPP_LINK } from '../App';
 
 const IndexContent = () => {
   useRevealAnimation();
   const { addItem } = useCart();
+  const navigate = useNavigate();
 
   const products = [
     {
@@ -141,17 +142,17 @@ const IndexContent = () => {
               <Button
                 variant="primary"
                 size="lg"
-                icon={<ArrowRight />}
                 className="bg-brown-light hover:bg-brown-DEFAULT"
-                as="a"
-                href="#products"
+                onClick={() => navigate('/products')}
               >
                 Shop Now
+                <ArrowRight className="ml-2" size={18} />
               </Button>
               <Button
                 variant="outline"
                 size="lg"
                 className="border-white text-white hover:bg-white hover:text-brown-DEFAULT"
+                onClick={() => navigate('/resources')}
               >
                 Explore Our Collection
               </Button>
@@ -195,8 +196,12 @@ const IndexContent = () => {
                 <p className="text-muted-foreground mb-8">
                   Every product we create is a testament to our commitment to authentic, natural ingredients and time-honored techniques. Our mission is to bring the luxury of traditional Nigerian scents to homes around the world.
                 </p>
-                <Button variant="primary" icon={<ArrowRight />}>
+                <Button 
+                  variant="default"
+                  onClick={() => navigate('/resources')}
+                >
                   Learn More About Our Story
+                  <ArrowRight className="ml-2" size={16} />
                 </Button>
               </div>
             </div>
@@ -254,37 +259,25 @@ const IndexContent = () => {
             {products.map((product, index) => (
               <div key={product.id} className="reveal" style={{ animationDelay: `${0.1 * index}s` }}>
                 <ProductCard
+                  id={product.id}
                   image={product.image}
                   title={product.title}
                   description={product.description}
                   price={product.price}
+                  whatsappLink={WHATSAPP_LINK}
                 />
-                <div className="mt-4 flex space-x-2">
-                  <Button 
-                    variant="outline" 
-                    className="flex-1"
-                    onClick={() => handleAddToCart(product)}
-                  >
-                    Add to Cart
-                  </Button>
-                  <Button 
-                    variant="primary"
-                    className="flex-1"
-                    as="a"
-                    href={WHATSAPP_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Buy Now
-                  </Button>
-                </div>
               </div>
             ))}
           </div>
           
           <div className="text-center mt-12 reveal">
-            <Button variant="secondary" icon={<ArrowRight />}>
+            <Button 
+              variant="secondary"
+              onClick={() => navigate('/products')}
+              className="inline-flex items-center"
+            >
               View All Products
+              <ArrowRight className="ml-2" size={16} />
             </Button>
           </div>
         </div>
@@ -313,16 +306,16 @@ const IndexContent = () => {
               transform your space into a sanctuary of serenity.
             </p>
             <Button
-              variant="primary"
+              variant="default"
               size="lg"
               className="bg-amber-500 text-primary hover:bg-amber-600 reveal"
               style={{ animationDelay: '0.2s' }}
-              as="a"
-              href={WHATSAPP_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={() => {
+                window.open(WHATSAPP_LINK, '_blank');
+              }}
             >
               Shop Now
+              <ArrowRight className="ml-2" size={18} />
             </Button>
           </div>
         </div>
@@ -360,8 +353,6 @@ const IndexContent = () => {
           <Newsletter className="reveal" />
         </div>
       </section>
-      
-      <Cart whatsappLink={WHATSAPP_LINK} />
       
       <Footer />
     </>

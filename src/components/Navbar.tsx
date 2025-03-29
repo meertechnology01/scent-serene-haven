@@ -1,114 +1,189 @@
+
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ShoppingCart } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
+import { ShoppingCart, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button } from './ui/button';
+import { useMobile } from '@/hooks/use-mobile';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { totalItems, items } = useCart();
+  const location = useLocation();
+  const isMobile = useMobile();
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 10;
-      setScrolled(isScrolled);
+      setIsScrolled(window.scrollY > 10);
     };
 
     window.addEventListener('scroll', handleScroll);
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  const navLinks = [
-    { name: 'Home', href: '#' },
-    { name: 'About', href: '#about' },
-    { name: 'Products', href: '#products' },
-    { name: 'Testimonials', href: '#testimonials' },
-    { name: 'Contact', href: '#contact' },
+  
+  const menuItems = [
+    { label: 'Home', path: '/' },
+    { label: 'Products', path: '/products' },
+    { label: 'Resources', path: '/resources' },
   ];
 
+  // Close menu when changing routes
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
+
   return (
-    <nav
+    <header
       className={cn(
-        'fixed top-0 left-0 w-full z-50 transition-all duration-300',
-        scrolled ? 'glass py-2' : 'bg-transparent py-4'
+        'fixed top-0 left-0 w-full z-50 transition-all duration-300 px-4',
+        {
+          'py-2 bg-white/90 backdrop-blur-md shadow-sm': isScrolled,
+          'py-4 bg-transparent': !isScrolled && location.pathname === '/',
+          'py-2 bg-white shadow-sm': !isScrolled && location.pathname !== '/',
+        }
       )}
     >
-      <div className="container-custom flex items-center justify-between">
-        {/* Logo and Text */}
-        <a href="#" className="flex items-center">
-          <img
-            src="/sclogo.png"
-            alt="Scent Serene Logo"
-            className="h-12 w-auto mr-2"
-          />
-          <h1 className="font-serif text-2xl font-medium tracking-tight text-primary">
-            Scent<span className="text-gold-dark">Serene</span>
-          </h1>
-        </a>
+      <div className="container mx-auto flex items-center justify-between">
+        <Link
+          to="/"
+          className="font-serif text-2xl font-semibold text-primary tracking-tight z-10"
+        >
+          <span className={cn({
+            'text-white': !isScrolled && location.pathname === '/',
+            'text-primary': isScrolled || location.pathname !== '/',
+          })}>
+            Scent Serene
+          </span>
+        </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center space-x-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-primary hover:text-gold-dark transition-colors duration-300 underline-hover"
+        <nav className="hidden md:flex items-center space-x-8">
+          {menuItems.map((item) => (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={cn(
+                'font-medium transition-colors hover:text-accent',
+                {
+                  'text-white/90 hover:text-white': !isScrolled && location.pathname === '/',
+                  'text-primary/80 hover:text-primary': isScrolled || location.pathname !== '/',
+                  'text-primary font-semibold': location.pathname === item.path,
+                }
+              )}
             >
-              {link.name}
-            </a>
+              {item.label}
+            </Link>
           ))}
-          <a
-            href="#"
-            className="inline-flex items-center justify-center p-3 rounded-full text-white bg-primary hover:bg-primary/90 transition-all duration-300 hover:shadow-lg"
-          >
-            <ShoppingCart size={20} />
-          </a>
-        </div>
+        </nav>
 
-        {/* Mobile Navigation Toggle */}
-        <div className="lg:hidden">
+        {/* Mobile Menu Button */}
+        <div className="md:hidden flex items-center gap-4 z-10">
           <button
-            type="button"
-            className="p-2 rounded-md text-primary hover:text-gold-dark"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={toggleMenu}
+            className={cn(
+              'p-2 rounded-md focus:outline-none transition-colors',
+              {
+                'text-white': !isScrolled && location.pathname === '/',
+                'text-primary': isScrolled || location.pathname !== '/',
+              }
+            )}
+            aria-label="Toggle menu"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? (
+              <X size={24} />
+            ) : (
+              <Menu size={24} />
+            )}
           </button>
         </div>
+        
+        {/* Cart Button */}
+        <Button
+          variant="ghost"
+          size="icon"
+          className={cn(
+            'relative hidden md:flex',
+            {
+              'text-white hover:bg-white/20': !isScrolled && location.pathname === '/',
+              'text-primary hover:bg-primary/10': isScrolled || location.pathname !== '/',
+            }
+          )}
+          onClick={() => {
+            const event = new CustomEvent('toggle-cart');
+            window.dispatchEvent(event);
+          }}
+        >
+          <ShoppingCart size={20} />
+          {totalItems > 0 && (
+            <span className="absolute -top-1 -right-1 bg-accent text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+              {totalItems}
+            </span>
+          )}
+        </Button>
       </div>
 
-      {/* Mobile Navigation Menu */}
-      <div
-        className={cn(
-          'fixed inset-0 z-40 bg-white/95 backdrop-blur-lg transform transition-transform duration-300 ease-in-out lg:hidden',
-          isOpen ? 'translate-x-0' : 'translate-x-full'
-        )}
-      >
-        <div className="flex flex-col justify-center h-full">
-          <div className="flex flex-col items-center justify-center space-y-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-xl font-serif text-primary hover:text-gold-dark transition-colors duration-300"
-                onClick={() => setIsOpen(false)}
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden fixed inset-0 bg-background z-40 pt-16">
+          <nav className="container mx-auto py-8 flex flex-col items-center space-y-6">
+            {menuItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={cn(
+                  'text-xl font-medium transition-colors hover:text-accent',
+                  {
+                    'text-primary font-semibold': location.pathname === item.path,
+                  }
+                )}
               >
-                {link.name}
-              </a>
+                {item.label}
+              </Link>
             ))}
-            <a
-              href="#"
-              className="inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-md text-white bg-primary hover:bg-primary/90 transition-all duration-300"
-              onClick={() => setIsOpen(false)}
-            >
-              <ShoppingCart size={20} />
-              <span>Shop Now</span>
-            </a>
-          </div>
+            
+            <div className="w-full border-t border-muted my-4"></div>
+            
+            <div className="flex flex-col gap-4 w-full max-w-xs">
+              {/* Additional mobile links */}
+              <Link to="/incense-art" className="text-lg text-muted-foreground hover:text-primary">
+                The Art of Incense
+              </Link>
+              <Link to="/scent-pairing" className="text-lg text-muted-foreground hover:text-primary">
+                Scent Pairing Guide
+              </Link>
+              <Link to="/diy-aromatherapy" className="text-lg text-muted-foreground hover:text-primary">
+                DIY Aromatherapy
+              </Link>
+              
+              <div className="flex gap-4 mt-4">
+                <Button 
+                  variant="outline" 
+                  className="flex-1"
+                  onClick={() => {
+                    const event = new CustomEvent('toggle-cart');
+                    window.dispatchEvent(event);
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  Cart ({totalItems})
+                </Button>
+                <Button className="flex-1" asChild>
+                  <Link to="/products">Shop Now</Link>
+                </Button>
+              </div>
+            </div>
+          </nav>
         </div>
-      </div>
-    </nav>
+      )}
+    </header>
   );
 };
 

@@ -8,6 +8,12 @@ import { CartProvider } from "./context/CartContext";
 import Cart from "./components/Cart";
 import Index from "./pages/Index";
 import Products from "./pages/Products";
+import ProductDetail from "./pages/ProductDetail";
+import IncenseArt from "./pages/IncenseArt";
+import Resources from "./pages/Resources";
+import ScentPairing from "./pages/ScentPairing";
+import DIYAromatherapy from "./pages/DIYAromatherapy";
+import GiftGuide from "./pages/GiftGuide";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +30,12 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/incense-art" element={<IncenseArt />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/scent-pairing" element={<ScentPairing />} />
+            <Route path="/diy-aromatherapy" element={<DIYAromatherapy />} />
+            <Route path="/gift-guide" element={<GiftGuide />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

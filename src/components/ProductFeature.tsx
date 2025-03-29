@@ -3,12 +3,16 @@ import React from 'react';
 import IncenseAnimation from './IncenseAnimation';
 import { Sparkles, Wind } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button } from './ui/button';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface ProductFeatureProps {
   className?: string;
 }
 
 const ProductFeature = ({ className }: ProductFeatureProps) => {
+  const navigate = useNavigate();
+  
   return (
     <div className={cn("bg-sepia-light py-16 overflow-hidden", className)}>
       <div className="container-custom">
@@ -55,9 +59,20 @@ const ProductFeature = ({ className }: ProductFeatureProps) => {
                 </div>
               </div>
               
-              <button className="btn-primary mt-8">
-                Explore Incense Collection
-              </button>
+              <div className="mt-8 space-x-4">
+                <Button
+                  variant="default"
+                  onClick={() => navigate('/incense-art')}
+                >
+                  Learn More
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => navigate('/products?category=Incense')}
+                >
+                  Explore Incense Collection
+                </Button>
+              </div>
             </div>
           </div>
         </div>
