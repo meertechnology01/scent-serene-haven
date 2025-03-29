@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -18,7 +17,7 @@ interface ResourceCardProps {
 
 const ResourceCard = ({ title, description, icon, buttonText, link }: ResourceCardProps) => {
   const navigate = useNavigate();
-  
+
   return (
     <Card className="glass-card hover:shadow-lg transition-all duration-300">
       <CardHeader>
@@ -29,8 +28,8 @@ const ResourceCard = ({ title, description, icon, buttonText, link }: ResourceCa
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>
-        <Button 
-          variant="outline" 
+        <Button
+          variant="outline"
           className="w-full"
           onClick={() => navigate(link)}
         >
@@ -43,6 +42,8 @@ const ResourceCard = ({ title, description, icon, buttonText, link }: ResourceCa
 };
 
 const Resources = () => {
+  const navigate = useNavigate();
+
   const resources = [
     {
       title: "The Art of Incense",
@@ -77,15 +78,15 @@ const Resources = () => {
   return (
     <>
       <Navbar />
-      
+
       <div className="container mx-auto py-12 px-4">
         <Breadcrumb items={[{ label: "Resources" }]} />
-        
+
         <h1 className="font-serif text-4xl md:text-5xl font-medium text-center mb-6">Resources & Guides</h1>
         <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
           Explore our collection of guides and resources to enhance your fragrance journey and learn more about the tradition and art of scents.
         </p>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {resources.map((resource, index) => (
             <ResourceCard
@@ -98,30 +99,35 @@ const Resources = () => {
             />
           ))}
         </div>
-        
+
         <div className="glass-card p-8 mb-12">
           <h2 className="font-serif text-2xl text-brown-DEFAULT mb-4">Did You Know?</h2>
           <div className="prose max-w-none text-muted-foreground">
             <p>
-              The word "perfume" comes from the Latin "per fumum," meaning "through smoke," referencing 
+              The word "perfume" comes from the Latin "per fumum," meaning "through smoke," referencing
               the ancient practice of burning fragrant woods and resins as offerings to the gods.
             </p>
             <p className="mt-4">
-              In many cultures around the world, specific scents are associated with different life events, 
+              In many cultures around the world, specific scents are associated with different life events,
               celebrations, and rituals, creating a powerful connection between fragrance and memory.
             </p>
           </div>
         </div>
-        
+
         <div className="text-center">
           <h3 className="font-serif text-xl text-brown-DEFAULT mb-4">Can't find what you're looking for?</h3>
           <p className="text-muted-foreground mb-6">
             Contact us directly and our fragrance experts will be happy to help with any questions.
           </p>
-          <Button variant="default">Contact Us</Button>
+          <Button
+            variant="default"
+            onClick={() => navigate('/contact')}
+          >
+            Contact Us
+          </Button>
         </div>
       </div>
-      
+
       <Footer />
     </>
   );

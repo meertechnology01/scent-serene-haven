@@ -155,7 +155,7 @@ const GiftGuide = () => {
           <p className="text-muted-foreground mb-6">
             Contact our fragrance experts for assistance in choosing the perfect gift.
           </p>
-          <Button className="flex items-center gap-2">
+          <Button className="flex items-center gap-2"  onClick={() => navigate('/footer')}>
             Contact Us
             <ArrowRight size={16} />
           </Button>

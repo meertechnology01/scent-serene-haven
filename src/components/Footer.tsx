@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { Instagram, Facebook, Twitter, MapPin, Mail, Phone, MailIcon } from 'lucide-react';
+import Newsletter from './Newsletter'; // Import the Newsletter component
 
 interface FooterProps {
   className?: string;
@@ -69,6 +69,11 @@ const Footer = ({ className }: FooterProps) => {
               </li>
             </ul>
           </div>
+        </div>
+
+        {/* Add the Newsletter component here */}
+        <div className="mb-12">
+          <Newsletter className="bg-sepia-light" />
         </div>
 
         <div className="border-t border-muted/20 pt-6 flex flex-col md:flex-row items-center justify-between">

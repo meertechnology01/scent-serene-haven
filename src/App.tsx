@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,6 +10,7 @@ import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import IncenseArt from "./pages/IncenseArt";
 import Resources from "./pages/Resources";
+import Contact from "./pages/Contact";
 import ScentPairing from "./pages/ScentPairing";
 import DIYAromatherapy from "./pages/DIYAromatherapy";
 import GiftGuide from "./pages/GiftGuide";
@@ -33,6 +33,7 @@ const App = () => (
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/incense-art" element={<IncenseArt />} />
             <Route path="/resources" element={<Resources />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/scent-pairing" element={<ScentPairing />} />
             <Route path="/diy-aromatherapy" element={<DIYAromatherapy />} />
             <Route path="/gift-guide" element={<GiftGuide />} />
