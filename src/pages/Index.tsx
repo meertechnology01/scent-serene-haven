@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -152,7 +151,8 @@ const IndexContent = () => {
                 variant="outline"
                 size="lg"
                 className="border-white text-white hover:bg-white hover:text-brown-DEFAULT"
-                onClick={() => navigate('/resources')}
+                as="a"
+                href="/resources"
               >
                 Explore Our Collection
               </Button>
@@ -173,7 +173,7 @@ const IndexContent = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="reveal transform translate-y-8">
               <div className="relative">
-                <img 
+                <img
                   src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                   alt="Handcrafted scents"
                   className="rounded-lg shadow-xl"
@@ -183,7 +183,7 @@ const IndexContent = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="reveal transform translate-y-8">
               <div className="max-w-lg">
                 <span className="text-sm font-medium tracking-wider text-gold-dark uppercase">About Us</span>
@@ -196,7 +196,7 @@ const IndexContent = () => {
                 <p className="text-muted-foreground mb-8">
                   Every product we create is a testament to our commitment to authentic, natural ingredients and time-honored techniques. Our mission is to bring the luxury of traditional Nigerian scents to homes around the world.
                 </p>
-                <Button 
+                <Button
                   variant="default"
                   onClick={() => navigate('/resources')}
                 >
@@ -208,9 +208,9 @@ const IndexContent = () => {
           </div>
         </div>
       </section>
-      
+
       <ImageGallery />
-      
+
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="text-center max-w-2xl mx-auto mb-16 reveal">
@@ -222,11 +222,11 @@ const IndexContent = () => {
               We pour our heart and soul into every product, ensuring unmatched quality and an exceptional sensory experience.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
-              <div 
-                key={feature.id} 
+              <div
+                key={feature.id}
                 className="glass-card p-6 text-center hover:shadow-xl transition-all duration-300 reveal"
                 style={{ animationDelay: `${0.1 * index}s` }}
               >
@@ -240,9 +240,9 @@ const IndexContent = () => {
           </div>
         </div>
       </section>
-      
+
       <ProductFeature />
-      
+
       <section id="products" className="section-padding bg-sepia-light">
         <div className="container-custom">
           <div className="text-center max-w-2xl mx-auto mb-16 reveal">
@@ -254,7 +254,7 @@ const IndexContent = () => {
               Explore our range of luxurious fragrances crafted to transform your space and elevate your senses.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {products.map((product, index) => (
               <div key={product.id} className="reveal" style={{ animationDelay: `${0.1 * index}s` }}>
@@ -269,9 +269,9 @@ const IndexContent = () => {
               </div>
             ))}
           </div>
-          
+
           <div className="text-center mt-12 reveal">
-            <Button 
+            <Button
               variant="secondary"
               onClick={() => navigate('/products')}
               className="inline-flex items-center"
@@ -282,7 +282,7 @@ const IndexContent = () => {
           </div>
         </div>
       </section>
-      
+
       <section className="py-24 relative">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -320,7 +320,7 @@ const IndexContent = () => {
           </div>
         </div>
       </section>
-      
+
       <section id="testimonials" className="section-padding bg-white">
         <div className="container-custom">
           <div className="text-center max-w-2xl mx-auto mb-16 reveal">
@@ -332,7 +332,7 @@ const IndexContent = () => {
               Discover the experiences of those who have embraced the essence of Scent Serene.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <TestimonialCard
@@ -347,13 +347,13 @@ const IndexContent = () => {
           </div>
         </div>
       </section>
-      
+
       <section className="section-padding bg-sepia-light">
         <div className="container-custom">
           <Newsletter className="reveal" />
         </div>
       </section>
-      
+
       <Footer />
     </>
   );

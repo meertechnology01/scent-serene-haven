@@ -1,44 +1,36 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
 import { ShoppingCart, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from './ui/button';
+import { useCart } from '../context/CartContext';
 import { useMobile } from '@/hooks/use-mobile';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { totalItems, items } = useCart();
+  const { totalItems } = useCart();
   const location = useLocation();
   const isMobile = useMobile();
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  
-  const menuItems = [
-    { label: 'Home', path: '/' },
-    { label: 'Products', path: '/products' },
-    { label: 'Resources', path: '/resources' },
-  ];
 
-  // Close menu when changing routes
   useEffect(() => {
     setIsMenuOpen(false);
   }, [location.pathname]);
+
+  const navLinks = [
+    { name: 'Home', href: '/' },
+    { name: 'Products', href: '/products' },
+    { name: 'Resources', href: '/resources' },
+    { name: 'About', href: '#about' },
+    { name: 'Testimonials', href: '#testimonials' },
+    { name: 'Contact', href: '#contact' },
+  ];
 
   return (
     <header
@@ -52,74 +44,47 @@ const Navbar = () => {
       )}
     >
       <div className="container mx-auto flex items-center justify-between">
-        <Link
-          to="/"
-          className="font-serif text-2xl font-semibold text-primary tracking-tight z-10"
-        >
+        {/* Logo */}
+        <Link to="/" className="flex items-center font-serif text-2xl font-semibold tracking-tight">
+          <img src="/sclogo.png" alt="Scent Serene Logo" className="h-12 w-auto mr-2" />
           <span className={cn({
             'text-white': !isScrolled && location.pathname === '/',
             'text-primary': isScrolled || location.pathname !== '/',
-          })}>
-            Scent Serene
-          </span>
+          })}>Scent Serene</span>
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          {menuItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={cn(
-                'font-medium transition-colors hover:text-accent',
-                {
-                  'text-white/90 hover:text-white': !isScrolled && location.pathname === '/',
-                  'text-primary/80 hover:text-primary': isScrolled || location.pathname !== '/',
-                  'text-primary font-semibold': location.pathname === item.path,
-                }
-              )}
-            >
-              {item.label}
-            </Link>
+          {navLinks.map((link) => (
+            link.href.startsWith('#') ? (
+              <a key={link.name} href={link.href} className="font-medium text-primary hover:text-accent transition-colors">
+                {link.name}
+              </a>
+            ) : (
+              <Link key={link.name} to={link.href} className="font-medium text-primary hover:text-accent transition-colors">
+                {link.name}
+              </Link>
+            )
           ))}
         </nav>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center gap-4 z-10">
+        <div className="md:hidden flex items-center gap-4">
           <button
-            onClick={toggleMenu}
-            className={cn(
-              'p-2 rounded-md focus:outline-none transition-colors',
-              {
-                'text-white': !isScrolled && location.pathname === '/',
-                'text-primary': isScrolled || location.pathname !== '/',
-              }
-            )}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="p-2 rounded-md text-primary hover:text-accent transition-colors"
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? (
-              <X size={24} />
-            ) : (
-              <Menu size={24} />
-            )}
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-        
+
         {/* Cart Button */}
         <Button
           variant="ghost"
           size="icon"
-          className={cn(
-            'relative hidden md:flex',
-            {
-              'text-white hover:bg-white/20': !isScrolled && location.pathname === '/',
-              'text-primary hover:bg-primary/10': isScrolled || location.pathname !== '/',
-            }
-          )}
-          onClick={() => {
-            const event = new CustomEvent('toggle-cart');
-            window.dispatchEvent(event);
-          }}
+          className="relative hidden md:flex text-primary hover:bg-primary/10"
+          onClick={() => window.dispatchEvent(new CustomEvent('toggle-cart'))}
         >
           <ShoppingCart size={20} />
           {totalItems > 0 && (
@@ -132,55 +97,31 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden fixed inset-0 bg-background z-40 pt-16">
-          <nav className="container mx-auto py-8 flex flex-col items-center space-y-6">
-            {menuItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={cn(
-                  'text-xl font-medium transition-colors hover:text-accent',
-                  {
-                    'text-primary font-semibold': location.pathname === item.path,
-                  }
-                )}
-              >
-                {item.label}
+        <div className="md:hidden fixed inset-0 bg-white/95 backdrop-blur-lg z-40 pt-16 flex flex-col items-center space-y-6">
+          {navLinks.map((link) => (
+            link.href.startsWith('#') ? (
+              <a key={link.name} href={link.href} className="text-xl text-primary hover:text-accent transition-colors" onClick={() => setIsMenuOpen(false)}>
+                {link.name}
+              </a>
+            ) : (
+              <Link key={link.name} to={link.href} className="text-xl text-primary hover:text-accent transition-colors" onClick={() => setIsMenuOpen(false)}>
+                {link.name}
               </Link>
-            ))}
-            
-            <div className="w-full border-t border-muted my-4"></div>
-            
-            <div className="flex flex-col gap-4 w-full max-w-xs">
-              {/* Additional mobile links */}
-              <Link to="/incense-art" className="text-lg text-muted-foreground hover:text-primary">
-                The Art of Incense
-              </Link>
-              <Link to="/scent-pairing" className="text-lg text-muted-foreground hover:text-primary">
-                Scent Pairing Guide
-              </Link>
-              <Link to="/diy-aromatherapy" className="text-lg text-muted-foreground hover:text-primary">
-                DIY Aromatherapy
-              </Link>
-              
-              <div className="flex gap-4 mt-4">
-                <Button 
-                  variant="outline" 
-                  className="flex-1"
-                  onClick={() => {
-                    const event = new CustomEvent('toggle-cart');
-                    window.dispatchEvent(event);
-                    setIsMenuOpen(false);
-                  }}
-                >
-                  Cart ({totalItems})
-                </Button>
-                <Button className="flex-1" asChild>
-                  <Link to="/products">Shop Now</Link>
-                </Button>
-              </div>
-            </div>
-          </nav>
+            )
+          ))}
+          <Button
+            variant="outline"
+            className="w-full max-w-xs"
+            onClick={() => {
+              setIsMenuOpen(false);
+              window.dispatchEvent(new CustomEvent('toggle-cart'));
+            }}
+          >
+            Cart ({totalItems})
+          </Button>
+          <Button className="w-full max-w-xs" asChild>
+            <Link to="/products">Shop Now</Link>
+          </Button>
         </div>
       )}
     </header>
