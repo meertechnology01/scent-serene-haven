@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -140,7 +139,7 @@ const IndexContent = () => {
               style={{ animationDelay: '0.4s' }}
             >
               <Button
-                variant="primary"
+                variant="default"
                 size="lg"
                 className="bg-brown-light hover:bg-brown-DEFAULT"
                 onClick={() => navigate('/products')}

@@ -1,18 +1,17 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { ShoppingCart, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from './ui/button';
-import { useMobile } from '@/hooks/use-mobile';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { totalItems, items } = useCart();
   const location = useLocation();
-  const isMobile = useMobile();
+  const isMobile = useIsMobile();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -35,7 +34,6 @@ const Navbar = () => {
     { label: 'Resources', path: '/resources' },
   ];
 
-  // Close menu when changing routes
   useEffect(() => {
     setIsMenuOpen(false);
   }, [location.pathname]);
@@ -64,7 +62,6 @@ const Navbar = () => {
           </span>
         </Link>
 
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           {menuItems.map((item) => (
             <Link
@@ -84,7 +81,6 @@ const Navbar = () => {
           ))}
         </nav>
 
-        {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center gap-4 z-10">
           <button
             onClick={toggleMenu}
@@ -105,7 +101,6 @@ const Navbar = () => {
           </button>
         </div>
         
-        {/* Cart Button */}
         <Button
           variant="ghost"
           size="icon"
@@ -130,7 +125,6 @@ const Navbar = () => {
         </Button>
       </div>
 
-      {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden fixed inset-0 bg-background z-40 pt-16">
           <nav className="container mx-auto py-8 flex flex-col items-center space-y-6">
@@ -152,7 +146,6 @@ const Navbar = () => {
             <div className="w-full border-t border-muted my-4"></div>
             
             <div className="flex flex-col gap-4 w-full max-w-xs">
-              {/* Additional mobile links */}
               <Link to="/incense-art" className="text-lg text-muted-foreground hover:text-primary">
                 The Art of Incense
               </Link>
