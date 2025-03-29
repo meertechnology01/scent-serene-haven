@@ -148,11 +148,7 @@ const IndexContent = () => {
                 <ArrowRight className="ml-2" size={18} />
               </Button>
               <Button
-                variant="outline"
-                size="lg"
-                className="border-white text-white hover:bg-white hover:text-brown-DEFAULT"
-                as="a"
-                href="/resources"
+                onClick={() => navigate('/resources')}
               >
                 Explore Our Collection
               </Button>
