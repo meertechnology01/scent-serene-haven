@@ -105,32 +105,42 @@ const IndexContent = () => {
     });
   };
 
-  const heroBackground = "https://images.unsplash.com/photo-1584589167171-541ce45f1eea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80";
-  const ctaBackground = "https://images.unsplash.com/photo-1510942369845-e84156dc5653?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80";
+  const heroBackground = "/bg.png";
+  const ctaBackground = "/bg.png";
 
   return (
     <>
       <Navbar />
-      
+
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ 
-          backgroundImage: `url(${heroBackground})`,
-          filter: 'brightness(0.9)'
-        }} />
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${heroBackground})`,
+            filter: 'brightness(0.9)',
+          }}
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-primary/40 to-primary/60"></div>
-        
+
         <div className="container-custom relative z-10">
           <div className="max-w-3xl mx-auto text-center text-white">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-semibold mb-6 tracking-tight animate-fade-in">
               Experience the Essence of Serenity
             </h1>
-            <p className="text-lg md:text-xl mb-8 text-white/90 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-              Luxury handcrafted scents from the heart of Nigeria. Elevate your space and soul with our exotic blends.
+            <p
+              className="text-lg md:text-xl mb-8 text-white/90 animate-slide-up"
+              style={{ animationDelay: '0.2s' }}
+            >
+              Luxury handcrafted scents from the heart of Nigeria. Elevate your
+              space and soul with our exotic blends.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up" style={{ animationDelay: '0.4s' }}>
-              <Button 
-                variant="primary" 
-                size="lg" 
+            <div
+              className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up"
+              style={{ animationDelay: '0.4s' }}
+            >
+              <Button
+                variant="primary"
+                size="lg"
                 icon={<ArrowRight />}
                 className="bg-brown-light hover:bg-brown-DEFAULT"
                 as="a"
@@ -138,8 +148,8 @@ const IndexContent = () => {
               >
                 Shop Now
               </Button>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 size="lg"
                 className="border-white text-white hover:bg-white hover:text-brown-DEFAULT"
               >
@@ -148,15 +158,15 @@ const IndexContent = () => {
             </div>
           </div>
         </div>
-        
-        <a 
-          href="#about" 
+
+        <a
+          href="#about"
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2 bg-white/10 p-3 rounded-full backdrop-blur-sm hover:bg-white/20 transition-all duration-300 animate-float"
         >
           <ArrowDown className="text-white" size={24} />
         </a>
       </section>
-      
+
       <section id="about" className="section-padding bg-sepia-light">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -281,21 +291,28 @@ const IndexContent = () => {
       </section>
       
       <section className="py-24 relative">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ 
-          backgroundImage: `url(${ctaBackground})`,
-          filter: 'brightness(0.8)'
-        }} />
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${ctaBackground})`,
+            filter: 'brightness(0.8)',
+          }}
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-primary/40 to-primary/30 backdrop-blur-sm"></div>
-        
+
         <div className="container-custom relative z-10">
           <div className="max-w-2xl mx-auto text-center text-white">
             <h2 className="font-serif text-3xl md:text-4xl font-medium mb-6 reveal">
               Discover Your Signature Scent Today
             </h2>
-            <p className="text-lg mb-8 text-white/90 reveal" style={{ animationDelay: '0.1s' }}>
-              Indulge in our exquisite collection of handcrafted fragrances and transform your space into a sanctuary of serenity.
+            <p
+              className="text-lg mb-8 text-white/90 reveal"
+              style={{ animationDelay: '0.1s' }}
+            >
+              Indulge in our exquisite collection of handcrafted fragrances and
+              transform your space into a sanctuary of serenity.
             </p>
-            <Button 
+            <Button
               variant="primary"
               size="lg"
               className="bg-amber-500 text-primary hover:bg-amber-600 reveal"
