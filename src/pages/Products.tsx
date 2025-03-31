@@ -4,6 +4,7 @@ import { products, getAllCategories } from '../data/products';
 import ProductCard from '../components/ProductCard';
 import Breadcrumb from '../components/Breadcrumb';
 import { Button } from '../components/ui/button';
+import Navbar from '../components/Navbar';
 import {
   Pagination,
   PaginationContent,
@@ -54,9 +55,11 @@ const Products = () => {
   }
 
   return (
+
     <div className="container mx-auto py-8 px-4">
       {/* Breadcrumb */}
-      <Breadcrumb items={[{ label: "Products" }]} />
+      <Navbar />
+      {/* <Breadcrumb items={[{ label: "Products" }]} /> */}
       
       <h1 className="font-serif text-4xl md:text-5xl font-medium text-center mb-8">Our Products</h1>
       
